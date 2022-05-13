@@ -1,49 +1,71 @@
 #  opennebula kvm  ovs  ceph部署图
 
-```plantuml
-@startuml
-state 控制节点{
-
-  state  mysql
-  state  sunstone
-
-  state  openvswitch
-
-}
-
-
-rectangle "事件系统" <<Concept>> {
-rectangle "Example 1" <<Concept>> as ex1
-rectangle "Another rectangle"
-}
-
-
-@enduml
-```
-
 
 ```plantuml
 @startuml
-state 计算节点{
 
-  state  "opennebula-node-kvm"
-
-  state  openvswitch
+cloud Ethernet{
 
 }
 
-@enduml
-```
+node "opennebula-controller" {
+ rectangle NIC1  as "public-nic"
+ rectangle NIC2  as "business-nic"
+ rectangle NIC3  as "storage-nic"
+
+ component  {
+ 	component  mysql 
+ 	component  openvswitch 
+ 	component  opennebula
+ 	component  controller_ceph as "ceph-common"
+ }
+}
 
 
-```plantuml
-@startuml
-state 存储节点{
+node "opennebula-compute" {
 
+ rectangle NIC4  as "business-nic"
+ rectangle NIC5  as "storage-nic"
+ 
+ component {
 
-  state  ceph
+ 	component "opennebula-node-kvm"
+ 	component  component_ovs as  "openvswitch"
+ 	component "ceph-common"
+ }
 
 }
 
+
+node "ceph-controller"  {
+   rectangle  NIC6 as "storage-nic" 
+   component {
+	 component "ceph-mon"
+	 component "ceph-mgr"   	
+	 component "ceph-mds"   	
+
+   }
+
+}
+
+
+
+node "ceph-osd"  {
+
+   rectangle  NIC7 as "storage-nic" 
+   component {
+	 component  ceph_osd_2  as "ceph-osd"   	
+
+   }
+}
+
+Ethernet -[bold]-> NIC1 : 外网vip连接
+NIC1 -[bold]-> NIC2 : "ovs patch"
+NIC2 -[bold]-> NIC4 : "ovs vxlan"
+
+
+
+
 @enduml
+
 ```
