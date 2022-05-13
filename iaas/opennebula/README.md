@@ -1,3 +1,21 @@
-# Headline
+#  Opennebula 说明
 
-> An awesome project.
+
+1. 基础架构
+
+
+2. 控制节点
+
+
+
+
+3. 计算节点
+
+
+
+
+4. 存储节点
+
+
+
+
