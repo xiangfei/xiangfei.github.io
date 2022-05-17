@@ -1,20 +1,8 @@
----
-title: python ruby 元编程区别
-date: 2020-02-18 16:11:20
-tags: 
-- python
-- ruby
-author: 相飞
-comments:
-- true
-categories:
-- python
-- ruby
----
 
 
 
-###  蜜糖方法
+
+##  蜜糖方法
 
 - ruby 
  -  method_missing
@@ -24,7 +12,7 @@ categories:
  - \__getattr__  , \__getattribute__
 
 
-### 装饰器
+## 装饰器
 
 - python 
 
@@ -48,7 +36,7 @@ end
 
 ```
 
-### 动态方法
+## 动态方法
 
 - python
 
@@ -160,7 +148,7 @@ define_method :xxx do |args|
 end
 
 ```
-### 动态类
+## 动态类
 
 - python
 

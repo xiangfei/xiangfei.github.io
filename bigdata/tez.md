@@ -1,21 +1,4 @@
----
-title: hive tez 集成
-date: 2020-08-24 16:35:45
-author: 相飞
-comments:
-- true
-tags:
-- hive
-- tez
-- bigdata
-categories:
-- hive
-- tez
-- bigdata
-
-
----
-
+## 安装
 
 ### 下载 bin 包
  - url http://archive.apache.org/dist/tez/0.9.2/
@@ -35,7 +18,7 @@ categories:
 ### hive 新增配置文件
 
 
-```bash
+```xml
 [root@hadoop-cluster-2 conf]# cat tez-site.xml 
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
@@ -91,11 +74,11 @@ export HADOOP_CLASSPATH=${HADOOP_CLASSPATH}:${TEZ_CONF_DIR}:${TEZ_JARS}/*:${TEZ_
 
 
 
-### error
+## 常见问题
 
  - 没有定位到问题, 可能是hadoop 版本
 
-```
+```bash
 2020-08-25T07:01:30,121 ERROR [HiveServer2-Background-Pool: Thread-605] exec.Task: Failed to execute tez graph.
 java.lang.IllegalArgumentException: Can not create a Path from an empty string
 	at org.apache.hadoop.fs.Path.checkPathArg(Path.java:172) ~[hadoop-common-3.3.0.jar:?]

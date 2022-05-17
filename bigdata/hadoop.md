@@ -1,16 +1,5 @@
----
-title: hadoop 3.3 高可用安装
-date: 2020-08-10 13:14:38
-author: 相飞
-comments:
-- true
-tags:
-- hadoop
-- bigdata
-categories:
-- hadoop
-- bigdata
----
+
+# hadoop 集群安装
 
 ###  准备
 
@@ -59,7 +48,7 @@ cat /etc/hosts
 - 安装openjdk
 
 
-```
+```bash
 [root@hadoop-cluster-1 ~]# yum -y install java-1.8.0-openjdk-devel.x86_64  java-1.8.0-openjdk.x86_64
 
 ```
@@ -81,7 +70,7 @@ cat /etc/hosts
  - 修改配置文件
   
 
-  ```bash
+```bash
 [root@hadoop-cluster-3 bin]# cat ../conf/zoo.cfg
 # The number of milliseconds of each tick
 tickTime=2000
@@ -153,8 +142,8 @@ Starting zookeeper ... STARTED
   ```
 
 - 安装hadoop 集群   
- - 解压hadoop-3.3.0-aarch64.tar.gz安装到到 /data # hadoop-cluster-3 执行 ,ssh-keygen 机器
- - set env
+  - 解压hadoop-3.3.0-aarch64.tar.gz安装到到 /data # hadoop-cluster-3 执行 ,ssh-keygen 机器
+  - set env
 
 ```bash
 
@@ -172,7 +161,7 @@ export HDFS_ZKFC_USER=root
 
  - 修改core-site.xml
 
-```
+```xml
 [root@hadoop-cluster-3 hadoop-3.3.0]# cat ./etc/hadoop/core-site.xml 
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
@@ -213,7 +202,7 @@ export HDFS_ZKFC_USER=root
 ```
  - 修改hdfs-site.xml 
 
-```
+```xml
 [root@hadoop-cluster-3 hadoop-3.3.0]# cat ./etc/hadoop/hdfs-site.xml 
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
@@ -332,19 +321,7 @@ export HDFS_ZKFC_USER=root
 
 ```
 
- >  启动失败
 
-```
- 2020-08-10 06:39:05,583 INFO org.apache.hadoop.util.ExitUtil: Exiting with status -1: java.io.IOException: java.lang.RuntimeException: Could not resolve Kerberos principal name: java.net.UnknownHostException: hadoop-cluster-3.novalocal: hadoop-cluster-3.novalocal: Name or service not known
-
-# 
-127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
-::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
-192.168.226.63 hadoop-cluster-3  hadoop-cluster-3.novalocal
-192.168.226.65 hadoop-cluster-2   hadoop-cluster-2.novalocal
-192.168.226.64 hadoop-cluster-1   hadoop-cluster-1.novalocal
-
-```
 
  
  - 启动 namenode  cluster-3
@@ -440,7 +417,7 @@ About to bootstrap Standby ID nn3 from:
  - 配置yarn(all cluster nodes)
   - resourcemanager 
  
-```
+```xml
 #参考官方最小化配置
 [root@hadoop-cluster-2 hadoop-3.3.0]# cat etc/hadoop/yarn-site.xml 
 <?xml version="1.0"?>
@@ -510,7 +487,7 @@ About to bootstrap Standby ID nn3 from:
 > 默认是主备模式 , 先配置3个看启动什么结果
 
 
-```
+```bash
 [root@hadoop-cluster-3 hadoop-3.3.0]# ./bin/yarn rmadmin -getServiceState rm1
 2020-08-12 03:42:39,832 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 standby
@@ -525,7 +502,7 @@ standby
 
 
  - 启动resourcemanage
- ```
+ ```bash
 [root@hadoop-cluster-2 hadoop-3.3.0]# ./bin/yarn --daemon start resourcemanager
  ```
 
@@ -553,7 +530,7 @@ standby
 - yarn
 
 
-```
+```bash
 [root@hadoop-cluster-3 hadoop-3.3.0]# ./bin/yarn  node -all -list
 2020-08-13 01:19:46,181 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 Total Nodes:5
@@ -694,3 +671,20 @@ hadoop-cluster-3:8020                              standby
 
 ```
 
+
+
+## 常见问题
+
+> [!WARNING]  启动失败
+
+```bash
+ 2020-08-10 06:39:05,583 INFO org.apache.hadoop.util.ExitUtil: Exiting with status -1: java.io.IOException: java.lang.RuntimeException: Could not resolve Kerberos principal name: java.net.UnknownHostException: hadoop-cluster-3.novalocal: hadoop-cluster-3.novalocal: Name or service not known
+
+# 
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.226.63 hadoop-cluster-3  hadoop-cluster-3.novalocal
+192.168.226.65 hadoop-cluster-2   hadoop-cluster-2.novalocal
+192.168.226.64 hadoop-cluster-1   hadoop-cluster-1.novalocal
+
+```

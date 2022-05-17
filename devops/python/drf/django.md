@@ -1,18 +1,10 @@
----
-title: django rest 查找
-date: 2020-02-25 10:21:28
-tags: django
-author: 相飞
-comments:
-- true
-categories:
-- django
----
 
 
-
-# 说明
+## 说明
 - 查找get 改成post
+
+> [!TIP]
+> - 前端插件封装，统一接口。后端调整
 
 ```python
 #!/usr/bin/python 

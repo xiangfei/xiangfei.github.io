@@ -1,17 +1,9 @@
----
-title: django 分页
-date: 2020-02-25 10:34:35
-tags: django
-author: 相飞
-comments:
-- true
-categories:
-- django
----
 
 
-# post 查找分页
+## post 查找分页
 
+> [!TIP]
+> - get方法删除，全部换post
 
 ```python
 #!/usr/bin/python 

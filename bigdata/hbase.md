@@ -1,21 +1,7 @@
----
-title: hbase 2.3 高可用安装
-date: 2020-08-12 15:50:02
-author: 相飞
-comments:
-- true
-tags:
-- hbase
-- bigdata
-categories:
-- hbase
-- bigdata
-
----
 
 
 
-###  准备
+##  准备
 
 #### 机器
 |  vip   | ip   |  host  | OS |
@@ -48,7 +34,7 @@ categories:
 
 - 修改env 文件  hbase-env.sh 
 
-```
+```bash
 # addd
 export JAVA_HOME=/usr
 export HBASE_MANAGES_ZK=false
@@ -56,7 +42,7 @@ export HBASE_MANAGES_ZK=false
 ```
 - 修改hbase-site.xml 文件
 
-```
+```xml
 <configuration>
   <!--
     The following properties are set for running HBase as a single process on a
@@ -145,7 +131,7 @@ nohup ./hbase thrift2  start -p 9090 2>&1 >/dev/null&
 ### 最终安装状态
 
 
-```
+```bash
 2020-08-13 01:14:18,218 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 HBase Shell
 Use "help" to get list of supported commands.

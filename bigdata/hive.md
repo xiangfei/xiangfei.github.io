@@ -1,21 +1,6 @@
----
-title: hive 3.1.2 高可用安装
-date: 2020-08-19 14:33:14
-author: 相飞
-comments:
-- true
-tags:
-- hive
-- bigdata
-categories:
-- hive
-- bigdata
 
-
----
-
-
-#### 机器
+## 准备
+### 机器
 |  vip   | ip   |  host  | OS |
 |  ----   | ----  | ---- |  ----  |
 | 192.168.151.200 |  192.168.226.64   | hadoop-cluster-1   |  centos 7  |
@@ -30,11 +15,11 @@ categories:
 |     |  192.168.213.58   |  mariadb-galera-cluster |  centos 7 |
 
 
-#### cluster node
+### cluster node
 
 - hiveserver2
 
-
+## 安装
 
 ### tar包下载
 
@@ -46,7 +31,7 @@ categories:
  
 #### add hive_home_path
 
-```
+```bash
 # /etc/profile
 export HIVE_HOME=/data/tools/apache-hive-3.1.2-bin
 export PATH=$HIVE_HOME/bin:$PATH
@@ -55,7 +40,7 @@ export PATH=$HIVE_HOME/bin:$PATH
 #### 创建hive dir
 
 
-```
+```bash
 [root@hadoop-cluster-2 bin]# ./hadoop  fs -mkdir       /tmp
 2020-08-19 07:00:55,671 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 [root@hadoop-cluster-2 bin]# 
@@ -76,14 +61,14 @@ mkdir: `hdfs://mycluster/user/hive': No such file or directory
 
 
 
-```
+```bash
 [root@hadoop-cluster-2 conf]# yum -y install mariadb mariadb-dev mariadb-server
 ```
 
 #### 修改hive remote 配置
  - touch apache-hive-3.1.2-bin/conf/hive-site.xml 
 
-```
+```xml
 [root@hadoop-cluster-2 apache-hive-3.1.2-bin]# cat conf/hive-site.xml 
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
@@ -136,7 +121,7 @@ mkdir: `hdfs://mycluster/user/hive': No such file or directory
 
  - hive-env.sh
 
-```
+```bash
 # export HIVE_CONF_DIR=
 
 # Folder containing extra libraries required for hive compilation/execution can be controlled by:
@@ -152,7 +137,7 @@ export HIVE_AUX_JARS_PATH=/data/tools/apache-hive-3.1.2-bin/lib
 ### 初始化数据
 
 
-```
+```bash
 [root@hadoop-cluster-1 apache-hive-3.1.2-bin]# ./schematool -dbType mysql -initSchema
 
 ```
@@ -161,7 +146,7 @@ export HIVE_AUX_JARS_PATH=/data/tools/apache-hive-3.1.2-bin/lib
 ### 启动hiveserver2
 
 
-```
+```bash
 [root@hadoop-cluster-2 bin]# cat start.sh 
 nohup ./hiveserver2 2>&1 >/dev/null&
 [root@hadoop-cluster-2 bin]# 
@@ -169,11 +154,11 @@ nohup ./hiveserver2 2>&1 >/dev/null&
 ```
 
 
-### error
+## 常见问题
 
 - java.lang.NoSuchMethodError: com.google.common.base.Preconditions.checkArgument
 
-```
+```bash
 which: no hbase in (/data/tools/apache-hive-3.1.2-bin/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin)
 2020-08-19 15:54:32: Starting HiveServer2
 SLF4J: Class path contains multiple SLF4J bindings.
@@ -198,7 +183,7 @@ Exception in thread "main" java.lang.NoSuchMethodError: com.google.common.base.P
 
 
 
-```
+```bash
 [root@hadoop-cluster-2 hadoop-3.3.0]# pwd
 /data/tools/hadoop-3.3.0
 [root@hadoop-cluster-2 hadoop-3.3.0]# cd ../hbase-2.3.0

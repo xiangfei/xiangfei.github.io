@@ -1,22 +1,12 @@
----
-title: python3 元编程
-date: 2020-02-18 15:33:30
-tags: python
-author: 相飞
-comments:
-- true
-categories:
-- python
----
 
 
 
-### 概述
+## 概述
 
 - Python元编程有两种方法，一是采用类似“装饰器”的工具对基本元素（例如函数、类、类型）内审和对其进行实时创建和修改，二是运用类型"元类"的方式对类实例的创建过程进行修改，甚至于允许重新设计Python面对对象编程范式的实现
 
 
-### 装饰器
+## 装饰器
 
 
 ```python
@@ -58,11 +48,11 @@ def logit(logfile='out.log'):
 - 在类装饰器中使用闭包会导致生成的对象不再是被装饰的类的实例，二是在装饰器函数创建的子类的实例，这会影响\__name__和\__doc__等属性，在上篇我们使用@wraps装饰器对函数装饰器进行操作让问题得到解决，但在类装饰器中这一方法无效
 
 
-### meta
+## meta
 
 ---
 
-#### type
+### type
 
 
 
@@ -72,7 +62,7 @@ type(name, bases, dict) #用来创建类
 ```
 
 
-#### metaclass
+### metaclass
 
 ```python
 class FirstMetaClass(type):
@@ -84,7 +74,7 @@ class FirstMetaClass(type):
 # attrs 类属性
 ```
 
-#### 动态创建function
+### 动态创建function
 
 ```python
 module_code = compile('def foobar(): return "foobar"', '', 'exec')
@@ -94,7 +84,7 @@ print foobar()
 
 ```
 
-#### 动态method
+### 动态method
 
 ```python
 import types
