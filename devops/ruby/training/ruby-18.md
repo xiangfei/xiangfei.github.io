@@ -1,14 +1,4 @@
----
-title: ruby Range
-date: 2019-09-09 19:05:19
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
 
----
 
 
 ### Ruby 范围（Range）

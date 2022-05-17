@@ -1,5 +1,5 @@
 ---
-title: ruby  agent 内存增长
+title: ruby  agent 
 date: 2020-04-16 15:24:49
 tags: ruby
 author: 相飞
@@ -12,7 +12,8 @@ categories:
 
 
 
-#### ruby collect 内存一直增加
+
+## ruby collect 内存一直增加
 
 reason ruby 申请的内存不会释放,需要自己去解决
 

@@ -1,14 +1,3 @@
----
-title: rails api 文档
-date: 2020-04-09 16:03:55
-author: 相飞
-comments:
-- true
-categories:
-- rails
-
-
----
 
 
 

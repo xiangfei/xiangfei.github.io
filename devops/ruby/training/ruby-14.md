@@ -1,15 +1,4 @@
----
-title: ruby String
-date: 2019-09-09 16:38:59
 
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
-
----
 
 
 ### Ruby 字符串（String）

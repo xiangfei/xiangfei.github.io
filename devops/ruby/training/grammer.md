@@ -1,26 +1,15 @@
----
-title: ruby 语法基础
-date: 2019-05-22 15:18:58
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
 
----
-
-### Ruby 语法
+## Ruby 语法
 - 让我们编写一个简单的 Ruby 程序。所有的 Ruby 文件扩展名都是 .rb。所以，把下面的源代码放在 test.rb 文件中。
 
-```
+```ruby
 #!/usr/bin/ruby -w
  
 puts "Hello, Ruby!";
 ```
 
 在这里，假设您的 /usr/bin 目录下已经有可用的 Ruby 解释器。现在，尝试运行这个程序，如下所示：
-```
+```ruby
 > $ ruby test.rb
 ```
 {% spoiler 以上实例输出结果为： %}
@@ -70,7 +59,7 @@ puts "Hello, Ruby!";
 
 下面是不同的实例：
 
-```
+```ruby
 #!/usr/bin/ruby -w
 # -*- coding : utf-8 -*-
  
@@ -108,7 +97,7 @@ bar
 {%endspoiler%}
 ### Ruby BEGIN 语句
 #### 语法
-```
+```ruby
 BEGIN {
    code
 }
@@ -117,7 +106,7 @@ BEGIN {
 声明 code 会在程序运行之前被调用。
 
 #### 实例
-```
+```ruby
 #!/usr/bin/ruby
  
 puts "这是主 Ruby 程序"
@@ -143,7 +132,7 @@ END {
 声明 code 会在程序的结尾被调用。
 
 #### 实例
-```
+```ruby
 #!/usr/bin/ruby
  
 puts "这是主 Ruby 程序"
@@ -164,22 +153,22 @@ BEGIN {
 {%endspoiler%}
 ### 注释会对 Ruby 
 - 解释器隐藏一行，或者一行的一部分，或者若干行。您可以在行首使用字符（ # ）：
-```
+```ruby
 # 我是注释，请忽略我。
 ```
 或者，注释可以跟着语句或表达式的同一行的后面：
-```
+```ruby
 name = "Madisetti" # 这也是注释
 ```
 您可以注释多行，如下所示：
-```
+```ruby
 # 这是注释。
 # 这也是注释。
 # 这也是注释。
 # 这还是注释。
 ```
 下面是另一种形式。这种块注释会对解释器隐藏 =begin/=end 之间的行：
-```
+```ruby
 =begin
 这是注释。
 这也是注释。

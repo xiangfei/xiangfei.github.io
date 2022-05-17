@@ -1,15 +1,3 @@
----
-title: ruby 面向对象
-date: 2019-09-09 20:14:30
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
-
-
----
 
 
 ### Ruby 面向对象

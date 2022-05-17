@@ -1,15 +1,3 @@
----
-title: ruby  块
-date: 2019-09-09 16:29:05
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
-
----
-
 
 ### Ruby 块
 

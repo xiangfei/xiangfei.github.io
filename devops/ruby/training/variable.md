@@ -1,16 +1,6 @@
----
-title: ruby 变量
-date: 2019-08-23 16:41:25
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
 
----
 
-### Ruby 变量
+## Ruby 变量
 变量是持有可被任何程序使用的任何数据的存储位置。
 
 Ruby 支持五种类型的变量。
@@ -21,14 +11,14 @@ Ruby 支持五种类型的变量。
 - @@开头：类变量（Class variable）类变量被共享在整个继承链中
 - 大写字母开头：常数（Constant）。
 
-#### Ruby 全局变量
+### Ruby 全局变量
 - 全局变量以 $ 开头。未初始化的全局变量的值为 nil，在使用 -w 选项后，会产生警告。
 
 - 给全局变量赋值会改变全局状态，所以不建议使用全局变量。
 
 
 实例
-```
+```ruby
 #!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
  
@@ -59,7 +49,7 @@ class2obj.print_global
 - 实例变量以 @ 开头。未初始化的实例变量的值为 nil，在使用 -w 选项后，会产生警告。
 
 实例
-```
+```ruby
 #!/usr/bin/ruby
  
 class Customer
@@ -100,7 +90,7 @@ cust2.display_details()
 
 - 在使用 -w 选项后，重载类变量会产生警告。
 
-```
+```ruby
 实例
 #!/usr/bin/ruby
  
@@ -150,7 +140,7 @@ cust2.total_no_of_customers()
 - 常量不能定义在方法内。引用一个未初始化的常量会产生错误。对已经初始化的常量赋值会产生警告。
 
 实例
-```
+```ruby
 #!/usr/bin/ruby
 # -*- coding: UTF-8 -*-
  

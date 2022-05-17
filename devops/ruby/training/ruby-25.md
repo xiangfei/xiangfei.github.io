@@ -1,16 +1,3 @@
----
-title: ruby 正则
-date: 2019-09-09 20:15:16
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
-
-
-
----
 
 
 
@@ -22,13 +9,13 @@ categories:
 __语法__
 __正则表达式__从字面上看是一种介于斜杠之间或介于跟在 %r 后的任意分隔符之间的模式，如下所示：
 
-``` 
+```ruby
 /pattern/
 /pattern/im    # 可以指定选项
 %r!/usr/local! # 使用分隔符的正则表达式
 ```
 __实例__
-```
+```ruby
 #!/usr/bin/ruby
  
 line1 = "Cats are smarter than dogs";

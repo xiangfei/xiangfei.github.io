@@ -1,16 +1,5 @@
----
-title: ruby 类和对象
-date: 2019-08-23 16:24:27
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
 
----
-
-### Ruby 类和对象
+## Ruby 类和对象
 
 Ruby 是一种完美的面向对象编程语言。面向对象编程语言的特性包括：
 
@@ -28,7 +17,7 @@ Ruby 是一种完美的面向对象编程语言。面向对象编程语言的特
 类 Vehicle 的定义如下：
 
 实例
-```
+```bash
 Class Vehicle
 {
    Number no_of_wheels
@@ -51,7 +40,7 @@ Class Vehicle
 ```
 通过给这些数据成员分配不同的值，您可以创建类 Vehicle 的不同实例。例如，一架飞机有三个轮子，马力 1,000，燃油罐容量为 100 升。以同样的方式，一辆汽车有四个轮子，马力 200，煤气罐容量为 25 升。
 
-#### 在 Ruby 中定义类
+### 在 Ruby 中定义类
 为了使用 Ruby 实现面向对象编程，您需要先学习如何在 Ruby 中创建对象和类。
 
 在 Ruby 中，类总是以关键字 class 开始，后跟类的名称。类名的首字母应该大写。类 Customer 如下所示：
@@ -61,7 +50,7 @@ end
 ```
 您可以使用关键字 end 终止一个类。类 中的所有数据成员都是介于类定义和 end 关键字之间。
 
-#### Ruby 类中的变量
+### Ruby 类中的变量
 Ruby 提供了四种类型的变量：
 
 - 局部变量：局部变量是在方法中定义的变量。局部变量在方法外是不可用的。在后续的章节中，您将看到有关方法的更多细节。局部变量以小写字母或 _ 开始。
@@ -77,7 +66,7 @@ class Customer
    @@no_of_customers=0
 end
 ```
-##### 在 Ruby 中使用 new 方法创建对象
+#### 在 Ruby 中使用 new 方法创建对象
 对象是类的实例。现在您将学习如何在 Ruby 中创建类的对象。在 Ruby 中，您可以使用类的方法 new 创建对象。
 
 方法 new 是一种独特的方法，在 Ruby 库中预定义。new 方法属于类方法。
@@ -89,7 +78,7 @@ cust2 = Customer. new
 ```
 在这里，cust1 和 cust2 是两个对象的名称。对象名称后跟着等号（=），等号后跟着类名，然后是点运算符和关键字 new。
 
-##### 自定义方法来创建 Ruby 对象
+#### 自定义方法来创建 Ruby 对象
 您可以给方法 new 传递参数，这些参数可用于初始化类变量。
 
 当您想要声明带参数的 new 方法时，您需要在创建类的同时声明方法 initialize。
@@ -118,13 +107,13 @@ end
 cust1=Customer.new("1", "John", "Wisdom Apartments, Ludhiya")
 cust2=Customer.new("2", "Poul", "New Empire road, Khandala")
 ```
-#### Ruby 类中的成员函数
+### Ruby 类中的成员函数
 在 Ruby 中，函数被称为方法。类中的每个方法是以关键字 def 开始，后跟方法名。
 
 方法名总是以小写字母开头。在 Ruby 中，您可以使用关键字 end 来结束一个方法。
 
 下面的实例定义了一个 Ruby 方法：
-```
+```ruby
 class Sample
    def function
       statement 1
@@ -133,7 +122,7 @@ class Sample
 end
 ```
 在这里，statement 1 和 statement 2 是类 Sample 内的方法 function 的主体的组成部分。这些语句可以是任何有效的 Ruby 语句。例如，我们可以使用方法 puts 来输出 Hello Ruby，如下所示：
-```
+```ruby
 class Sample
    def hello
       puts "Hello Ruby!"
@@ -141,7 +130,7 @@ class Sample
 end
 ```
 下面的实例将创建类 Sample 的一个对象，并调用 hello 方法：
-```
+```ruby
 #!/usr/bin/ruby
  
 class Sample
@@ -151,7 +140,7 @@ class Sample
 end
  ```
 使用上面的类来创建对象
-```
+```ruby
 object = Sample. new
 object.hello
 ```

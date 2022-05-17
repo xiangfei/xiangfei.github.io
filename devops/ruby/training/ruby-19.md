@@ -1,14 +1,3 @@
----
-title: ruby 迭代器
-date: 2019-09-09 19:05:22
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
-
----
 
 ### Ruby 迭代器
 简单来说：迭代(iterate)指的是重复做相同的事，所以迭代器(iterator)就是用来重复多次相同的事。

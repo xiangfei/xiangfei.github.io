@@ -1,25 +1,17 @@
----
-title: Ruby 类案例
-date: 2019-08-23 16:37:17
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
-
----
 
 
-### Ruby 类案例
+## Ruby 类案例
 
-#### 面将创建一个名为 Customer 的 Ruby 类，声明两个方法：
+> [!TIP]
+
+
+### 面将创建一个名为 Customer 的 Ruby 类，声明两个方法：
 
 - display_details：该方法用于显示客户的详细信息。
 - total_no_of_customers：该方法用于显示在系统中创建的客户总数量。
 
 实例
-```
+```ruby
 #!/usr/bin/ruby
  
 class Customer
@@ -71,11 +63,11 @@ cust2.display_details()
 cust2.total_no_of_customers()
 ```
 
-#### 保存并执行代码
+### 保存并执行代码
 现在，把所有的源代码放在 main.rb 文件中，如下所示：
 
 实例
-```
+```ruby
 #!/usr/bin/ruby
  
 class Customer

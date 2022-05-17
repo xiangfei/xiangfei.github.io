@@ -1,15 +1,3 @@
----
-title: Ruby Dir 类和方法
-date: 2019-09-09 19:43:41
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
-
-
----
 
 
 ### Ruby Dir 类和方法

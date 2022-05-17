@@ -1,15 +1,3 @@
----
-title: ruby 异常
-date: 2019-09-09 20:03:05
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
-
-
----
 
 
 ### Ruby 异常

@@ -1,14 +1,3 @@
----
-title: ruby File 
-date: 2019-09-09 19:05:24
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
-
----
 
 
 ### Ruby 文件的输入与输出

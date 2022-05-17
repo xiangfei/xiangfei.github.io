@@ -1,15 +1,4 @@
----
-title: ruby  Ruby File 类和方法
-date: 2019-09-09 19:43:39
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
 
-
----
 File 表示一个连接到普通文件的 stdio 对象。open 为普通文件返回该类的一个实例。
 
 ### 类方法

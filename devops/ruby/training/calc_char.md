@@ -1,14 +1,4 @@
----
-title: Ruby 运算符
-date: 2019-08-23 16:47:15
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
 
----
 
 ### Ruby 运算符
 Ruby 支持一套丰富的运算符。大多数运算符实际上是方法调用。例如，a + b 被解释为 a.+(b)，其中指向变量 a 的 + 方法被调用，b 作为方法调用的参数。

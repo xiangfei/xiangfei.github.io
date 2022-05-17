@@ -1,14 +1,4 @@
----
-title: ruby thread
-date: 2019-09-09 20:15:16
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
 
----
 
 ### Ruby 多线程
 每个正在系统上运行的程序都是一个进程。每个进程包含一到多个线程。

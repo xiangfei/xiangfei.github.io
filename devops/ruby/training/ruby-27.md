@@ -1,16 +1,3 @@
----
-title: ruby  zeitwerk
-date: 2020-03-17 11:31:54
-
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
-
----
-
 
 
 ### reload 

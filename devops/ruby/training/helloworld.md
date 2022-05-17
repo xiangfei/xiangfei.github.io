@@ -1,25 +1,15 @@
----
-title: ruby 第一个程序
-date: 2019-05-22 15:17:58
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
 
----
 
-### 交互式ruby
+## 交互式ruby
 - irb
 
-```
+```ruby
 [root@autotest-ruby-agent ~]# irb
 2.4.5 :001 > 
 ```
 - 最简单的ruby程序
 
-```
+```ruby
 2.4.5 :001 > puts "hello world"
 hello world
  => nil 
@@ -28,7 +18,7 @@ hello world
 
 - 函数
 
-```
+```ruby
 2.4.5 :002 > def s 
 2.4.5 :003?>   return "ssss"
 2.4.5 :004?>   end
@@ -40,14 +30,14 @@ ssss
 
 - 离开 irb
 
-```
+```ruby
 2.4.5 :006 > exit
 [root@autotest-ruby-agent ~]# 
 
 ```
 
-### 命令行执行
+## 命令行执行
 
-```
+```ruby
 ruby hello_world.rb
 ```

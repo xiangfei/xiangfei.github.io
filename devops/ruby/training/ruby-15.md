@@ -1,14 +1,3 @@
----
-title: ruby Array
-date: 2019-09-09 16:39:33
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
-
----
 
 
 

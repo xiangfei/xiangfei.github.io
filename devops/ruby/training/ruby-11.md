@@ -1,14 +1,4 @@
----
-title: ruby 方法
-date: 2019-09-05 20:36:26
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
 
----
 
 
 

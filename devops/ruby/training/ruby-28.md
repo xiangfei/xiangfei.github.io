@@ -1,16 +1,6 @@
----
-title: ruby  Memory debug
-date: 2020-04-16 08:59:39
-tags: ruby
-author: 相飞
-comments:
-- true
-categories:
-- ruby
-
----
 
 
+## benchmark
 
 
 ```ruby
