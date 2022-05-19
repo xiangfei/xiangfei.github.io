@@ -168,9 +168,17 @@
   - [vue](devops/vue/)
     - [基础](devops/vue/basic)
   - [设计模式](devops/desginpattern/)
-    - [创建型模式](devops/desginpattern/create_mod/)
-      - [工厂方法](devops/desginpattern/create_mod/factory)
-      - [抽象工厂](devops/desginpattern/create_mod/abstract_factory)
+    - [创建模式](devops/desginpattern/creational-patterns/)
+      - [工厂方法](devops/desginpattern/creational-patterns/factory)
+      - [抽象工厂](devops/desginpattern/creational-patterns/abstract_factory)
+      - [建造者/生成器](devops/desginpattern/creational-patterns/builder)
+      - [单例](devops/desginpattern/creational-patterns/singleton)
+      - [原型](devops/desginpattern/creational-patterns/prototype)
+    - [结构模式](devops/desginpattern/structural-patterns/)
+        - [适配器模式](devops/desginpattern/structural-patterns/adapter)
+    - [行为模式](devops/desginpattern/behavioral-patterns/)
+        - [责任链模式](devops/desginpattern/behavioral-patterns/chain-of-responsibility)
+
+    
 
 
-  

@@ -296,7 +296,7 @@ Creator: The same creator's code has just worked with {Result of the ConcretePro
 
 #### iGun.go: 产品接口
 
-```go
+```golang
 package main
 
 type iGun interface {
@@ -311,7 +311,7 @@ type iGun interface {
 
 #### gun.go: 具体产品
 
-```go
+```golang
 
 
 package main
@@ -343,7 +343,7 @@ func (g *gun) getPower() int {
 #### ak47.go: 具体产品
 
 
-```go
+```golang
 package main
 
 type ak47 struct {
@@ -363,7 +363,7 @@ func newAk47() iGun {
 ####  musket.go: 具体产品
 
 
-```go
+```golang
 package main
 
 type musket struct {
@@ -402,7 +402,7 @@ func getGun(gunType string) (iGun, error) {
 ```
 #### main.go: 客户端代码
 
-```go
+```golang
 
 package main
 
