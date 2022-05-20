@@ -3,6 +3,17 @@
 
 ## I/O 调度算法调优
 
+> [!WARNING]
+> - 内核版本5.x 请跳过
+
+
+```bash
+
+[root@jumpserver ~]#  cat /sys/block/sda/queue/scheduler 
+[mq-deadline] kyber bfq none
+
+```
+
 - Linux I/O调度器（Linux I/O Scheduler）Linux内核中的一个组成部分，它介于通用块层和块设备驱动程序之间，用户可以通过调整这个调度器来优化系统性能。
 
 #### I/O调度的4种算法

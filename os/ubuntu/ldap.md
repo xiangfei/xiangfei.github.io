@@ -108,43 +108,32 @@ map    group gidNumber      objectSid:S-1-5-21-3623811015-3361044348-30300820
 #rootpwmoddn cn=admin,dc=example,dc=com
 
 # SSL options
-#ssl off
+ssl off
 #tls_reqcert never
-tls_cacertfile /etc/ssl/certs/ca-certificates.crt
+# tls_cacertfile /etc/ssl/certs/ca-certificates.crt
 
 # The search scope.
 #scope sub
 
 ```
 
+> [!WARNING]
+> - ssl 配置 根据openldap 配置。
 
-## 修改 /etc/pam.d/common-password
+
+## 修改 /etc/pam.d/common-session
 
 
 ```bash
 
 
-# 删除(不存在，直接ignore)
 
-# password [success=1 user_unknown=ignore default=die] pam_ldap.so try_first_pass
-
-
-# 最后一行增加
-session optional pam_mkhomedir.so skel=/etc/skel umask=077
+# 最后一行增加 , 自动创建home dir
+session optional pam_mkhomedir.so skel=/etc/skel umask=077   
 
 
 ```
 
-
-## 重启ncsd
-
-```bash
-
-service nscd restart  # database cache
-
- 
-
-```
 
 ## 重启nslcd
 
@@ -171,3 +160,88 @@ nscd -d
 nslcd  -d 
 
 ```
+
+
+## 常见问题 
+
+
+- getent passwd 没有找到用户
+
+
+> [!WARNING]
+> - 查看 systemctl nslcd status -l
+
+
+```bash
+
+root@ldap-test:~# service nslcd status
+● nslcd.service - LSB: LDAP connection daemon
+     Loaded: loaded (/etc/init.d/nslcd; generated)
+     Active: active (running) since Fri 2022-05-20 11:22:45 CST; 3min 31s ago
+       Docs: man:systemd-sysv-generator(8)
+    Process: 1457 ExecStart=/etc/init.d/nslcd start (code=exited, status=0/SUCCESS)
+      Tasks: 6 (limit: 2277)
+     Memory: 6.8M
+     CGroup: /system.slice/nslcd.service
+             └─1514 /usr/sbin/nslcd
+
+May 20 11:22:45 ldap-test nslcd[1514]: accepting connections
+May 20 11:22:45 ldap-test nslcd[1457]:    ...done.
+May 20 11:22:45 ldap-test systemd[1]: Started LSB: LDAP connection daemon.
+May 20 11:23:35 ldap-test nslcd[1514]: [8b4567] <passwd="nanfeng"> cn=zhuzhenghao,ou=tech,ou=people,dc=i-i,dc=ai: objectSid: missing
+May 20 11:23:39 ldap-test nslcd[1514]: [7b23c6] <authc="nanfeng"> cn=zhuzhenghao,ou=tech,ou=people,dc=i-i,dc=ai: Invalid credentials
+May 20 11:24:00 ldap-test nslcd[1514]: [5558ec] <authc="nanfeng"> cn=zhuzhenghao,ou=tech,ou=people,dc=i-i,dc=ai: Invalid credentials
+May 20 11:24:34 ldap-test nslcd[1514]: [e87ccd] <authc="nanfeng"> cn=zhuzhenghao,ou=tech,ou=people,dc=i-i,dc=ai: Invalid credentials
+May 20 11:24:44 ldap-test nslcd[1514]: [1b58ba] <authc="nanfeng"> cn=zhuzhenghao,ou=tech,ou=people,dc=i-i,dc=ai: Invalid credentials
+May 20 11:25:46 ldap-test nslcd[1514]: [4fd4a1] <passwd="mengya"> cn=zhanglinlin,ou=tech,ou=people,dc=i-i,dc=ai: objectSid: missing
+May 20 11:25:49 ldap-test nslcd[1514]: [9ac241] <authc="mengya"> cn=zhanglinlin,ou=tech,ou=people,dc=i-i,dc=ai: Invalid credentials
+root@ldap-test:~# 
+
+```
+
+> [!WARNING]
+> - objectSid 怎么创建不清楚，可以通过其他方式避开，比如手动创建用户
+
+
+-  登录失败
+
+
+```bash
+
+useradd test
+
+```
+
+> [!WARNING] 
+> - 没有增加用户,一直提示认证失败
+
+
+
+
+
+
+## nslcd  配置
+
+- [参考](https://www.markturner.net/2019/09/27/ad-ldap-authentication-on-linux-hosts/)
+
+
+- base 
+
+```bash
+base group OU=Groups,dc=example,dc=com
+base passwd CN=Users,dc=example,dc=com
+
+```
+
+> [!TIP]
+> - nslcd where to find the users and groups lists that Linux expects to have:
+
+-  passwd filter 
+
+```bash
+filter passwd (&(Objectclass=user)(!(objectClass=computer)))
+
+```
+
+> [!TIP]
+> - The passwd filter is used to specify who counts as a user vs. who is just another AD object. In the case below, we are looking for both a) someone who is a user, and b) someone who is not a computer:
