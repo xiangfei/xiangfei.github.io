@@ -67,13 +67,15 @@ uid nslcd
 gid nslcd
 
 # The location at which the LDAP server(s) should be reachable.
-uri ldap://10.4.2.69
+uri ldap://10.4.2.69:389
 
 # The search base that will be used for all queries.
+
 base dc=i-i,dc=ai
+# base ou=people,dc=i-i,dc=ai
 
 # The LDAP protocol version to use.
-#ldap_version 3
+ldap_version 3
 
 # The DN to bind with for normal lookups.
 binddn cn=admin,dc=i-i,dc=ai
@@ -81,27 +83,35 @@ bindpw Iindeed1008
 
 
 # filter passwd (&(objectClass=user)(objectClass=person)(!(objectClass=computer)))
-filter passwd  ou=people
+filter passwd  (objectClass=top)
 
 #default query is  uid , use givenname instead
 map passwd uid  givenname
 
-# map    passwd givenname           givenname
 # map    passwd uidNumber     objectSid:S-1-5-21-3623811015-3361044348-30300820
 # map    passwd gidNumber     objectSid:S-1-5-21-3623811015-3361044348-30300820
+# map passwd uidNumber objectSid:S-1-5-21-4483729093-3277648929-7759834922
+# map passwd gidNumber objectSid:S-1-5-21-4483729093-3277648929-7759834922
+map    passwd uidNumber   S-1-5-21-1270179133-2928470170-2248674342-4324
+map    passwd gidNumber   S-1-5-21-1270179133-2928470170-2248674342-4324
 map    passwd homeDirectory "/home/$givenname"
 map    passwd gecos         displayName
 map    passwd loginShell    "/bin/bash"
 
 
 
-filter shadow (objectClass=person)
-map shadow uid  sAMAccountName
+filter shadow (objectClass=top)
+map shadow uid  givenname
 
 
 
-filter group (|(objectClass=group)(objectClass=person))
-map    group gidNumber      objectSid:S-1-5-21-3623811015-3361044348-30300820
+#filter group (objectClass=*)
+#map    group gidNumber     givenname
+
+
+
+
+
 
 
 # The DN used for password modifications by root.
