@@ -200,3 +200,7 @@ bin/kibana --alow-root
 -  discover --> choose  kuberntetes template
 
 choose ->  add kubernetes elastic agent
+
+
+
+

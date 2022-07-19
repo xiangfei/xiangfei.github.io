@@ -6,7 +6,8 @@
 ### 安装 nodejs
 
 ```bash
-
+yum install epel-release
+yum install npm 
 
 ```
 
