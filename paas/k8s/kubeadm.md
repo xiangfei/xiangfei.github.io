@@ -1,12 +1,55 @@
 ## kubeadm 1.18.6 安装 k8s 集群
 
 
+- 如果使用离线安装，需要增加 内部的nexus 服务器
 ### 安装aliyun docker-ce  kubernetes repo
 
 ```bash
 
+kubeadm  init --config  kubeadmin.yaml
+
 ```
 
+
+```yaml
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: InitConfiguration
+localAPIEndpoint:
+  advertiseAddress: {{.Masterip}}
+  bindPort: 6443
+nodeRegistration:
+  criSocket: /var/run/dockershim.sock
+  name: k8s-master
+  taints:
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/master
+---
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: ClusterConfiguration
+kubernetesVersion: v1.18.6
+imageRepository: {{.Nexusip}}:5000/google_containers 
+apiServer:
+  timeoutForControlPlane: 4m0s
+controlPlaneEndpoint: {{.Masterip}}:6443     # vip 地址
+certificatesDir: /etc/kubernetes/pki
+clusterName: kubernetes
+dns:
+  type: CoreDNS
+etcd:
+  local:
+    dataDir: /var/lib/etcd
+networking:
+  dnsDomain: cluster.local
+  serviceSubnet: {{.Servicecidr}}
+  podSubnet: {{.Podcidr}}
+controllerManager: {}
+scheduler: {}
+---
+apiVersion: kubeproxy.config.k8s.io/v1alpha1
+kind: KubeProxyConfiguration
+
+
+```
 
 
 

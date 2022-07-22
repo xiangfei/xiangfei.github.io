@@ -90,6 +90,8 @@
     - [kubeadm安装](paas/k8s/kubeadm.md)
     - [nfs](paas/k8s/nfs.md) 
     - [nginx_ingress](paas/k8s/nginx_ingress.md)
+    - [secrets](paas/k8s/secrets.md)
+
   - [k3s](paas/k3s/)
     - [install](paas/k3s/install)
   - [swarm](paas/swarm/)
