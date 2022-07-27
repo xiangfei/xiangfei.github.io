@@ -154,6 +154,12 @@
 - [运维开发](devops/)
   - [golang](devops/golang/)
     - [基础](devops/golang/basic/)
+      - [关于golang](devops/golang/basic/about.md)
+      - [安装](devops/golang/basic/install.md)
+      - [workspace](devops/golang/basic/workspace.md)
+      - [包管理](devops/golang/basic/package.md)
+      - [变量](devops/golang/basic/variable.md)
+
       - [指针](devops/golang/basic/pointer.md)
     - [进阶](devops/golang/advanced)
     - [面试](devops/golang/interview)
@@ -282,7 +288,6 @@
       - [3次握手](experience/ops/tcp/tcp-1)  
       - [4次挥手](experience/ops/tcp/tcp-2)
       - [tcp攻击](experience/ops/tcp/tcp-3) 
-
       - [faq](experience/ops/tcp/faq) 
       - [优化](experience/ops/tcp/optimization) 
 
@@ -290,6 +295,8 @@
       - [绿联](experience/ops/scan/greenunion)        
     - [skills](experience/ops/skills/)
       - [github](experience/ops/skills/github)
+      - [jenkins](experience/ops/skills/jenkins)
+
       - [运维规范](experience/ops/skills/standand/Readme)
   - [开发](experience/dev/)
     - [自动化运维](experience/dev/ops/)
