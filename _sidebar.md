@@ -51,6 +51,8 @@
       - [nas](iaas/cloud/aliyun/nas)
       - [云安全中心](iaas/cloud/aliyun/oss)
       - [云防火墙](iaas/cloud/aliyun/oss)
+      - [云企业网](iaas/cloud/aliyun/company-network)
+
   - [SDN](iaas/sdn/)
     - [ovs](iaas/sdn/ovs/)
       - [安装](iaas/sdn/ovs/install.md)
