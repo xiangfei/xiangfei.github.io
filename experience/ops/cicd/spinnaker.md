@@ -1,8 +1,8 @@
-#  jenkins 
+#  spinnaker 
 
 
 > [!WARNING]
-> - jenkins使用经验
+> - spinnaker使用经验
 
 ##  部署 
 

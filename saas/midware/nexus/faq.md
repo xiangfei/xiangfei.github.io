@@ -25,12 +25,11 @@
 ## 高可用
 
 - 没有必要，宕机不影响业务。
+  - k8s image 拉取策略IfNotPresent
 
 
-## docker  https 认证
+## nexus docker  https 认证
 
 - 最好只打开http auth
 - https 认证通过lb 集群处理
-
-
 
