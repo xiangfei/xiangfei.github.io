@@ -36,6 +36,7 @@
       - [公有云扩展](iaas/cloud/opennebula/publiccloud.md)
       - [rest_api](iaas/cloud/opennebula/restapi.md)
       - [自定义image](iaas/cloud/opennebula/customimage.md)
+      - [iscsi 集成](iaas/cloud/opennebula/iscsi.md)
       - [pcipassthrough](iaas/cloud/opennebula/pcipassthrough.md)
       - [lxc](iaas/cloud/opennebula/lxc.md)
       - [vyos](iaas/cloud/opennebula/vyos.md)
