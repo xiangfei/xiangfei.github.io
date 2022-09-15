@@ -41,6 +41,7 @@
       - [pcipassthrough](iaas/cloud/opennebula/pcipassthrough.md)
       - [lxc](iaas/cloud/opennebula/lxc.md)
       - [vyos](iaas/cloud/opennebula/vyos.md)
+      - [arm](iaas/cloud/opennebula/arm.md)
       - [alphine router](iaas/cloud/opennebula/alphinerouter.md)
       - [常见问题](iaas/cloud/opennebula/faq.md)
     - [aliyun](iaas/cloud/aliyun)
