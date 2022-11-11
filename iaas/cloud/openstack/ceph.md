@@ -156,29 +156,29 @@ Created symlink /etc/systemd/system/ceph-mon.target.wants/ceph-mon@ceph-controll
 
 - 启动直接报错
   
-```
+```bash
 2020-08-06T11:17:34.411+0800 7f73b8337700  4 rocksdb: [db/db_impl.cc:390] Shutdown: canceling all background work
 2020-08-06T11:17:34.412+0800 7f73b8337700  4 rocksdb: [db/db_impl.cc:563] Shutdown complete
 2020-08-06T11:17:34.412+0800 7f73b8337700  0 ceph-mon: created monfs at /var/lib/ceph/mon/ceph-ceph-controller01 for mon.ceph-controller01
 [root@controller01 ceph]# 
 
+
 ```
 
+
 - 解决在配置文件增加参数
+
 
 ```bash
 [root@controller01 ~]# vim /etc/ceph/ceph.conf 
 [global]
 osd max object name len = 256
 osd max object namespace len = 64
-
 # 重新生成mon文件
-
 [root@controller01 ~]# monmaptool --create --generate -c /etc/ceph/ceph.conf /etc/ceph/monmap --clobber
 monmaptool: monmap file /etc/ceph/monmap
 monmaptool: set fsid to 38bc3fbb-1752-4cb1-b16c-2e9d5d402891
 monmaptool: writing epoch 0 to /etc/ceph/monmap (3 monitors)
-
 ```
 
 - 启动报错monmap 不匹配
