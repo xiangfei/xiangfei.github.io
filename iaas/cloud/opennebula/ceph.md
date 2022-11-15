@@ -169,3 +169,28 @@ BRIDGE_LIST = "10.4.1.6"
 - attach instance
 
 ![](/images/opennebula_ceph_instance_attach.png)
+
+
+
+### 说明
+
+
+> [!WARNING]
+> - ceph storage class 先执行rbd export 命令，需要占用本地存储,如果 不需要使用本地存储，需要手动改opennbula instance 
+
+
+
+```xml
+<devices>
+  <disk type='network' device='disk'>
+    <auth username='libvirt'>
+      <secret type='ceph' uuid='0c3e8a84-9cd0-4fe2-b30b-1c2d9c427d53'/>
+    </auth>
+    <source protocol='rbd' name='one/mysql8-qa'>
+      <host name='10.4.1.10' port='6789'/>
+    </source>
+    <target dev='vdb' bus='virtio'/></disk>
+</devices>
+
+
+```
