@@ -67,7 +67,7 @@ root@supertext-k8s-privatization:~#  ceph auth get client.libvirt -o ceph.client
 -  in ceph machine
 
 ```bash
-cat > secret.xml <<EOF
+cat > secrets.xml <<EOF
 <secret ephemeral='no' private='no'>
   <uuid>0c3e8a84-9cd0-4fe2-b30b-1c2d9c427d53</uuid>
   <usage type='ceph'>
@@ -188,6 +188,8 @@ BRIDGE_LIST = "10.4.1.6"
     </auth>
     <source protocol='rbd' name='one/mysql8-qa'>
       <host name='10.4.1.10' port='6789'/>
+      <host name='10.4.1.8' port='6789'/>
+      <host name='10.4.1.16' port='6789'/>
     </source>
     <target dev='vdb' bus='virtio'/></disk>
 </devices>

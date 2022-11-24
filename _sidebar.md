@@ -6,6 +6,8 @@
       - [golang](os/centos/vim-golang)
   - [ubuntu](os/ubuntu/)
     - [ldap](os/ubuntu/ldap)
+    - [netplan](os/ubuntu/netplan)
+
 - [Iaas](iaas/)
   - [云计算](iaas/cloud/)
     - [openstack](iaas/cloud/openstack/)
@@ -55,7 +57,6 @@
       - [云安全中心](iaas/cloud/aliyun/oss)
       - [云防火墙](iaas/cloud/aliyun/oss)
       - [云企业网](iaas/cloud/aliyun/company-network)
-
   - [SDN](iaas/sdn/)
     - [ovs](iaas/sdn/ovs/)
       - [安装](iaas/sdn/ovs/install.md)
@@ -129,6 +130,7 @@
       - [单节点安装](saas/midware/mysql/install.md)
       - [k8s](saas/midware/mysql/k8s.md)
       - [galera](saas/midware/mysql/galera.md)
+      - [ops](saas/midware/mysql/ops.md)
       - [FAQ](saas/midware/mysql/faq.md)
     - [redis](saas/midware/redis/)
       - [install](saas/midware/redis/install.md)
@@ -325,6 +327,10 @@
       - [github](experience/ops/skills/github)
       - [plantuml](experience/ops/skills/plantuml)
       - [运维规范](experience/ops/skills/standand/Readme)
+    - [linux](experience/ops/linux/)
+      - [disk](experience/ops/linux/disk)
+      - [optimization](experience/ops/linux/optimization)
+
   - [开发](experience/dev/)
     - [自动化运维](experience/dev/ops/)
 

@@ -12,6 +12,17 @@
 | 10.4.1.9    | ceph-kvm-9.ii-ai.tech |
 | 10.4.1.10   | ceph-kvm-10.ii-ai.tech |
 
+## 参数调整
+
+
+```bash
+
+echo "kernel.pid_max= 4194303" | tee -a /etc/sysctl.conf
+
+echo "8192" > /sys/block/sda/queue/read_ahead_kb #需要加入开机启动
+
+
+```
 
 ## 安装
 
@@ -59,7 +70,7 @@ vi /etc/hosts
 
 [root@ceph-kvm-10 ~]# cat  initial-ceph.conf 
 [global]
-osd crush chooseleaf type = 0
+osd crush chooseleaf type = 1
 #mon host = 10.4.1.10
 #mon initial members = ceph-kvm-10.ii-ai.tech
 #osd pool default size = 3
@@ -77,6 +88,8 @@ osd crush chooseleaf type = 0
 [root@ceph-kvm-10 ~]# ceph orch daemon add osd ceph-kvm-10.ii-ai.tech:/dev/sdb
 [root@ceph-kvm-10 ~]# ceph orch daemon add osd ceph-kvm-9.ii-ai.tech:/dev/sdb
 [root@ceph-kvm-10 ~]# ceph orch daemon add osd ceph-kvm-8.ii-ai.tech:/dev/sdb
+
+[root@ceph-kvm-10 ~]# ceph config set mon mon_allow_pool_delete true
 
 ```
 
@@ -107,7 +120,34 @@ ceph fs new metadata cephfs_metadata cephfs_data
 
 ### 安装nfs
 
+> ![WARNING]
+> - 需要创建metadata server
+
+
+```bash
+ceph auth get-or-create client.guest mds 'allow' osd 'allow *' mon 'allow *' > ceph.client.guest.keyring
+
+cp ceph.client.guest.keyring /etc/ceph
+
+mount -t ceph  10.4.1.10:/  /data
+```
+
 ![](/images/nfs.png)
+
+
+
 
 ### 安装iscsi
 ![](/images/iscsi.png)
+
+
+
+### change log
+
+
+```bash
+ceph config set mgr mgr/cephadm/log_to_cluster_level debug
+ceph log last cephadm
+
+
+```
