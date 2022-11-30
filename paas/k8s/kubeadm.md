@@ -1,7 +1,35 @@
 ## kubeadm 1.18.6 安装 k8s 集群
 
+###  systcl配置
 
-- 如果使用离线安装，需要增加 内部的nexus 服务器
+
+```bash
+#sysctls for k8s node config
+net.ipv4.tcp_slow_start_after_idle=0
+net.core.rmem_max=16777216
+fs.inotify.max_user_watches=524288
+kernel.softlockup_all_cpu_backtrace=1
+kernel.softlockup_panic=1
+fs.file-max=2097152
+fs.inotify.max_user_instances=8192
+fs.inotify.max_queued_events=16384
+vm.max_map_count=262144
+fs.may_detach_mounts=1
+net.core.netdev_max_backlog=16384
+net.ipv4.tcp_wmem=4096 12582912 16777216
+net.core.wmem_max=16777216
+net.core.somaxconn=32768
+net.ipv4.ip_forward=1
+net.ipv4.tcp_max_syn_backlog=8096
+net.ipv4.tcp_rmem=4096 12582912 16777216
+
+
+```
+
+> [!WARNING] 
+> - 如果使用离线安装，需要增加 内部的nexus 服务器
+
+
 ### 安装aliyun docker-ce  kubernetes repo
 
 ```bash

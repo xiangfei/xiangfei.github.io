@@ -146,6 +146,8 @@
       - [安装](saas/midware/kafka/install.md)
     - [mongodb](saas/midware/mongodb/)
       - [单节点安装](saas/midware/mongodb/install.md)
+      - [ops](saas/midware/mongodb/ops.md)
+
     - [nacos](saas/midware/nacos/)
       - [安装](saas/midware/nacos/install.md)
       - [FAQ](saas/midware/nacos/faq.md)

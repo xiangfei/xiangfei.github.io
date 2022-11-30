@@ -349,4 +349,44 @@ yum -y install chrony
 
 
 
+### ceph pg 指定osd
+
+[参考](https://blog.csdn.net/a13568hki/article/details/113787518)
+
+```bash
+#ceph osd pg-upmap pgid osdid osdid osdid
+#表明pg 1.1需从osd.5重新映射到osd.8
+
+ceph osd pg-upmap-items 1.1 5 8
+
+#表明pg 1.2的osd集合中osd.0重映射到osd.8 ,osd.5重映射到osd.11
+ceph osd pg-upmap-items 1.2 0 8 5 11
+
+```
+
+
+### ceph 恢复
+- 备用盘方式
+
+
+[参考](https://zhuanlan.zhihu.com/p/160893485)
+
+```bash
+ceph osd crush add-bucket standby root
+ceph osd crush move osd.* root=standby #移动备用盘
+ceph osd pg-upmap pgid osdid osdid osdid  #osd 坏掉
+ceph osd rm-pg-upmap pgid
+
+
+
+```
+
+> [!WARNING]
+> - osd_force_pgupmap,该选项默认为fasle。只有当该选项为true时，上述PG映射才能成功。
+
+
+
+
+
+
 

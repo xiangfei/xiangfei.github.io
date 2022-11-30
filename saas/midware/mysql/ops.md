@@ -122,3 +122,31 @@ vi  /etc/my.cnf
 ...
 
 ```
+
+
+### 关闭bin_log
+
+
+```bash
+...
+[mysqld]
+#server-id                                 = 1
+skip-log-bin
+...
+
+```
+
+### undo log 太大
+
+
+
+```bash
+
+1.1G    ./undo_001
+1.1G    ./undo_002
+
+```
+
+
+https://egonlin.com/?p=1739
+https://www.zhihu.com/column/c_1405966484027494400
