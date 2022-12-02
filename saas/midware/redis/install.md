@@ -239,9 +239,52 @@ networks:
 ```
 
 
-## cluster 安装
+## centos7 cluster 安装 (yum)
+
+- 3 master 3 slave 
 
 
+```bash
+yum -y install wget 
+wget http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+rpm -ivh remi-release-7.rpm
+yum --enablerepo=remi list redis --showduplicates | sort -r
+yum --enablerepo=remi install redis-5.0.14 -y
 
 
+```
 
+- /etc/redis.conf
+
+```bash
+...
+cluster-enabled yes
+
+cluster-config-file nodes-6379.conf
+
+cluster-node-timeout 5000
+
+masterauth Iindeed1008
+
+requirepass Iindeed1008
+
+bind 0.0.0.0
+
+maxclients 50000
+
+appendonly yes
+
+appendfilename "appendonly.aof"
+
+daemonize yes
+
+...
+
+```
+
+
+```bash
+redis-cli -a Iindeed1008 --cluster create 10.4.2.43:6379 10.4.2.63:6379 10.4.2.67:6379 10.4.2.69:6379 10.4.2.76:6379 10.4.2.108:6379 --cluster-replicas 1
+# 按照提示执行
+redis-cli  -c  -h 10.4.2.43
+```
