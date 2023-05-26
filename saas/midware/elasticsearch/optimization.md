@@ -50,3 +50,18 @@ thread_pool.get.queue_size: 1000
 thread_pool.write.queue_size: 1000
 
 ```
+
+
+### 自动创建
+
+
+```bash
+setup.template.settings:
+  index.number_of_shards: 1
+
+# 允许自动生成index模板
+setup.template.enabled: true
+setup.template.overwrite: true
+
+
+```

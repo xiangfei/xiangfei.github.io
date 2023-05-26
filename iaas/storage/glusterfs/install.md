@@ -17,6 +17,7 @@
   - `需要关闭防火墙selinux`
 
 ```bash
+yum -y install centos-release-gluster
 yum install -y glusterfs glusterfs-server glusterfs-fuse glusterfs-rdma
 systemctl enable glusterd
 systemctl start glusterd

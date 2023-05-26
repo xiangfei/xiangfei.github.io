@@ -51,7 +51,7 @@ ceph osd  out  osd.1
 ceph osd rm osd.1
 ceph osd  crush rm osd.0
 ceph  auth rm osd.0
-ceph orch device zap ceph-kvm-10.ii-ai.tech /dev/sdc --force  #device文件系统需要重置
+ceph orch device zap ceph-kvm-10.ii-ai.tech /dev/sde --force  #device文件系统需要重置
 
 ceph orch daemon add osd ceph-kvm-10.ii-ai.tech:/dev/sdb
 
@@ -387,6 +387,242 @@ ceph osd rm-pg-upmap pgid
 
 
 
+### 找不到磁盘
+
+[参考](https://blog.csdn.net/Micha_Lu/article/details/125563951)
+
+- Failed to activate via lvm: could not find osd.8 with osd_fsid 66a579ab-db04-4794-abd3-1e7fd541b54b
+- ** ERROR: unable to open OSD superblock on /var/lib/ceph/osd/ceph-8: (2) No such file
+
+
+```bash
+root@ceph-kvm-8:/var/lib/ceph/4d12fb24-6a5e-11ed-8e2a-795e223d2483/osd.8# /bin/bash /var/lib/ceph/4d12fb24-6a5e-11ed-8e2a-795e223d2483/osd.8/unit.run
+--> Failed to activate via raw: did not find any matching OSD to activate
+--> Failed to activate via lvm: could not find osd.8 with osd_fsid 66a579ab-db04-4794-abd3-1e7fd541b54b
+--> Failed to activate via simple: 'Namespace' object has no attribute 'json_config'
+--> Failed to activate any OSD(s)
+debug 2022-12-07T03:25:40.093+0000 7fadcd3af3c0  0 set uid:gid to 167:167 (ceph:ceph)
+debug 2022-12-07T03:25:40.093+0000 7fadcd3af3c0  0 ceph version 17.2.5 (98318ae89f1a893a6ded3a640405cdbb33e08757) quincy (stable), process ceph-osd, pid 7
+debug 2022-12-07T03:25:40.093+0000 7fadcd3af3c0  0 pidfile_write: ignore empty --pid-file
+debug 2022-12-07T03:25:40.093+0000 7fadcd3af3c0 -1  ** ERROR: unable to open OSD superblock on /var/lib/ceph/osd/ceph-8: (2) No such file or directory
+# recovery 导致, 由于公司使用了raid卡,太旧需要确定是不是硬件问题
+# 设置recovery speed
+```
+
+#### 磁盘lvm信息丢失,需要重新配置
+
+```bash
+root@ceph-kvm-8:~# fdisk -l
+Disk /dev/loop0: 63.24 MiB, 66301952 bytes, 129496 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/loop1: 49.66 MiB, 52051968 bytes, 101664 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/loop2: 55.6 MiB, 58281984 bytes, 113832 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/loop3: 55.45 MiB, 58130432 bytes, 113536 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/loop4: 63.25 MiB, 66314240 bytes, 129520 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/loop5: 49.64 MiB, 52031488 bytes, 101624 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/loop6: 91.83 MiB, 96272384 bytes, 188032 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/loop7: 91.85 MiB, 96292864 bytes, 188072 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
 
 
 
+
+Disk /dev/sdd: 5.47 TiB, 6000606183424 bytes, 11719933952 sectors
+Disk model: PERC H700       
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/sda: 558.38 GiB, 599550590976 bytes, 1170997248 sectors
+Disk model: PERC H700       
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: 6E594B6C-5344-4149-A0EA-A51CCB66AB6E
+
+Device     Start        End    Sectors   Size Type
+/dev/sda1   2048       4095       2048     1M BIOS boot
+/dev/sda2   4096 1170995199 1170991104 558.4G Linux filesystem
+
+
+Disk /dev/sdb: 5.47 TiB, 6000606183424 bytes, 11719933952 sectors
+Disk model: PERC H700       
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/sde: 5.47 TiB, 6000606183424 bytes, 11719933952 sectors
+Disk model: PERC H700       
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/sdc: 5.47 TiB, 6000606183424 bytes, 11719933952 sectors
+Disk model: PERC H700       
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/ceph--8eac82ab--e656--41e0--97fd--00f8fc4a2d63-osd--block--eeedef57--8b96--478b--95dd--070f37bc4387: 5.47 TiB, 6000601989120 bytes, 11719925760 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/ceph--9b7843df--5ae2--493e--bf2c--37504f6fed25-osd--block--66a579ab--db04--4794--abd3--1e7fd541b54b: 5.47 TiB, 6000601989120 bytes, 11719925760 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/ceph--8c46710b--2e21--4219--8d6d--9fec4017690d-osd--block--f35ceb52--97d1--4422--93b5--6cac2f00f03b: 5.47 TiB, 6000601989120 bytes, 11719925760 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/ceph--b160afb3--6cfd--44b6--b99b--b5b0c83a30c2-osd--block--63462c07--186f--492b--8160--646a44bebf00: 5.47 TiB, 6000601989120 bytes, 11719925760 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+root@ceph-kvm-8:~# 
+root@ceph-kvm-8:~# vgs
+  VG                                        #PV #LV #SN Attr   VSize  VFree
+  ceph-8c46710b-2e21-4219-8d6d-9fec4017690d   1   1   0 wz--n- <5.46t    0 
+
+```
+
+
+-
+
+
+```bash
+/etc/lvm
+/etc/lvm/archive
+/etc/lvm/backup
+/etc/lvm/lvm.conf
+
+```
+
+
+
+
+```bash
+vgcfgrestore --list  ceph-8c46710b-2e21-4219-8d6d-9fec4017690d
+# 发现vgs都存在,磁盘信息丢失
+# 直接重启服务
+```
+
+
+> [!WARNING]
+> - ceph rook 部署建议使用raw disk 部署, lvm和容器同事部署产生脏数据
+
+
+###  ceph volume raw  创建osd
+
+
+```bash
+ceph orch daemon add osd ceph-kvm-10.ii-ai.tech:/dev/sdb raw
+
+```
+
+
+### ceph zap 
+
+-  Device /dev/sdd has partitions
+
+
+```bash
+root@ceph-kvm-8:~# wipefs -a -f /dev/sdd
+/dev/sdd: 22 bytes were erased at offset 0x00000000 (ceph_bluestore): 62 6c 75 65 73 74 6f 72 65 20 62 6c 6f 63 6b 20 64 65 76 69 63 65
+/dev/sdd: 4 bytes were erased at offset 0x000001de (atari): 77 68 6f 61
+```
+
+- 
+
+
+- osd not found
+- osd always starting
+
+```bash
+reboot 
+```
+> [!WARNING]
+> - zap 提示device 不存在, osd 一直启动。 mgr 有问题，直接重启
+
+
+
+### ceph 替换磁盘测试
+- ceph osd set  noreblance nobackfill norecover
+- ceph orch daemon stop osd.5
+- wiefs -af  /dev/sdc 
+- ceph  start osd.5 with error
+- ceph osd out osd.5
+- ceph osd crush rm osd.5
+- ceph auth rm osd.5
+- ceph osd rm osd.5
+- ceph orch daemon add osd ceph-kvm-8.ii-ai.tech:/dev/sdc   raw
+- ceph osd unset  noreblance nobackfill norecover
+
+```bash
+root@ceph-kvm-10:~# ceph pg dump  pgs_brief  | grep recovering
+dumped pgs_brief
+21.2     active+recovering+undersized+degraded+remapped   [5,8,3]           5     [3,8]               3
+21.3     active+recovering+undersized+degraded+remapped  [5,2,10]           5    [2,10]               2
+21.1     active+recovering+undersized+degraded+remapped   [5,9,0]           5     [9,0]               9
+21.1f    active+recovering+undersized+degraded+remapped   [8,5,0]           8     [8,0]               8
+21.19    active+recovering+undersized+degraded+remapped   [5,9,0]           5     [9,0]               9
+```
+
+> [!WARNING]
+> - 测试结果,ceph只会恢复osd5数据,没有迁移其他节点
+
+
+
+###  ceph 配置查看
+
+
+```bash
+ceph daemon /var/run/ceph/4d12fb24-6a5e-11ed-8e2a-795e223d2483/ceph-osd.10.asok  config show
+```
